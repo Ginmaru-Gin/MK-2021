@@ -3,9 +3,9 @@
 #include <Windows.h> // for system("pause")
 #include <locale.h> // for setlocale()
 
-// int -- целочисленный
-// double float -- вещественные
-// char -- целочисленный
+// int -- С†РµР»РѕС‡РёСЃР»РµРЅРЅС‹Р№
+// double float -- РІРµС‰РµСЃС‚РІРµРЅРЅС‹Рµ
+// char -- С†РµР»РѕС‡РёСЃР»РµРЅРЅС‹Р№
 // no bool -> use 1 as True and 0 as False
 
 int main(void) {
@@ -17,7 +17,7 @@ int main(void) {
     var = 2;
     int number = 156; // initialization
     char character = 'S';
-    printf("Привет мир!\n");
+    printf("РџСЂРёРІРµС‚ РјРёСЂ!\n");
     printf("%cHello ", character);
     printf("world %d(1) %d(2)", var, number);
     printf("\n");
