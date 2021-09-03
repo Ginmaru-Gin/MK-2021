@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{985b2990-320f-4090-acd2-3c59f49307b2}</ProjectGuid>
-    <RootNamespace>operatorif</RootNamespace>
+    <ProjectGuid>{299630c6-9113-4bf3-99c0-c91cbd7716db}</ProjectGuid>
+    <RootNamespace>My01helloworld</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="operator-if.c" />
+    <ClCompile Include="hello-world.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
