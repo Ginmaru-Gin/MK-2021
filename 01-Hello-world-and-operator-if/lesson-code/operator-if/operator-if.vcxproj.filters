@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="new_file.c">
+    <ClCompile Include="operator-if.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
