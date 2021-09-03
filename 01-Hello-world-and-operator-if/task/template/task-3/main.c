@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <locale.h>
+#include <Windows.h>
 
 int main(void) {
     setlocale(LC_ALL, "ru-RU");
 
-    // ввод числа
+    // РІРІРѕРґ С‡РёСЃР»Р°
     int number = 0;
     printf_s("Enter an integer: ");
     if (!scanf_s("%d", &number)) {
@@ -14,5 +15,6 @@ int main(void) {
 
     // ...
 
+    system("pause");
     return 0;
 }
