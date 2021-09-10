@@ -1,5 +1,6 @@
 ﻿#include <stdio.h>
 #include <locale.h>
+#include <Windows.h>
 
 int main(void) {
     // синтаксис функции scanf_s() похож на синтаксис printf_s(),

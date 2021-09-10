@@ -10,7 +10,7 @@ B -- тело цикла
 либо в проверочном выражении
 */
 #include <stdio.h>
-#include <Windows.h>
+#include <stdlib.h> // можно использовать для system("pause") вместо Windows.h
 
 int main(void) {
     float fValue;
