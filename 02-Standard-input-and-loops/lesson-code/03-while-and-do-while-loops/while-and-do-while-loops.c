@@ -11,6 +11,7 @@ B -- тело цикла
 */
 #include <stdio.h>
 #include <stdlib.h> // можно использовать для system("pause") вместо Windows.h
+#include <Windows.h>
 
 int main(void) {
     float fValue;
@@ -32,7 +33,7 @@ int main(void) {
         fValue /= 3;
         // Sleep() приостанавливает выполнение программы
         // принимает время в миллисекундах
-        Sleep(1000); // (Windows.h/stdlib.h)
+        Sleep(1000); // (Windows.h)
     } while (fValue > 0.5);
 
     system("pause");
