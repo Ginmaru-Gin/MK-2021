@@ -12,8 +12,12 @@ int main(void) {
     float pi;
     double e;
     printf_s("Enter your age: ");
-    scanf_s("%d", &age); // iVar -- переменная, а &iVar -- адрес этой переменной
+    scanf_s("%d", &age); // age -- переменная, а &age -- адрес этой переменной
     printf_s("Enter Pi and Exp value: ");
+    // в функции scanf_s() не требуются символы кроме модификаторов переменных,
+    // хотя они и могут быть указаны, например: scanf_s("%c%d%f") <-> scanf_s(%c %d %f)
+    // рекомендуется не использовать дополнительные символы, кроме разве что пробела,
+    // поскольку в документации об их обработке информации не имеется
     scanf_s("%f%lf", &pi, &e);
     printf_s("So, your age is %d and pi value is %f and e = %lf!\n", age, pi, e);
 
