@@ -1,11 +1,26 @@
 @echo off
 
-IF EXIST debug\task-1.exe (
-    SET PROG=debug\task-1
+SET RELEASE32=release\task-1.exe
+SET RELEASE64=x64\release\task-1.exe
+SET DEBUG32=debug\task-1.exe
+SET DEBUG64=x64\debug\task-1.exe
+
+IF EXIST %RELEASE64% (
+	ECHO RELEASEx64
+    SET PROG=%RELEASE64%
+) ELSE IF EXIST %RELEASE32% (
+	ECHO RELEASEx32
+	SET PROG=%RELEASE32%
+) ELSE IF EXIST %DEBUG64% (
+	ECHO DEBUGx64
+	SET PROG=%DEBUG64%
+) ELSE IF EXIST %DEBUG32% (
+	ECHO DEBUGx32
+	SET PROG=%DEBUG32%
 ) ELSE (
-    IF EXIST x64\debug\task-1.exe (
-    SET PROG=x64\debug\task-1
-    )
+	ECHO EXECUTABLE FILE ISN'T FOUND
+	PAUSE
+	EXIT /B 1
 )
 ::SET PROG=debug\task-1
 
