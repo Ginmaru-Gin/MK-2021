@@ -4,7 +4,7 @@
 
 При выполнении данной работы запрещено использование операторов `break` и `continue`.
 
-## #1
+## #1 (0.1)
 
 **[ функция scanf_s(...) ]**
 
@@ -45,7 +45,7 @@ Enter your name:
 Thank you, John! You're registered in system. Have a nice day!
 ```
 
-## #2
+## #2 (0.2)
 
 **[ цикл for(..) ]**
 
@@ -60,7 +60,7 @@ Thank you, John! You're registered in system. Have a nice day!
 1 2 3 4 5 6 7 8
 ```
 
-## #3
+## #3 (0.2)
 
 **[ цикл for(..) ]**
 
@@ -75,7 +75,7 @@ Q Q Q Q Q
 Q Q Q Q Q
 ```
 
-## #4
+## #4 (0.35)
 
 **[ цикл while(..) ]**
 
@@ -94,7 +94,7 @@ Q Q Q Q Q
 
 
 
-## #5
+## #5 (0.15)
 
 **[ цикл do-while(..) ]**
 
@@ -112,7 +112,7 @@ Q Q Q Q Q
 > 0
 ```
 
-## #6*
+## #6* (+0.5)
 
 **[цикл for]**
 
