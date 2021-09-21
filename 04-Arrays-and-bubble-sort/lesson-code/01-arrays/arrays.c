@@ -33,7 +33,9 @@ int main(void) {
     // неинициализированный массив будет заполнен "мусором":
     int uninitializedArray[5];
     printf_s("uninitializedArray:\n");
-    for (int i = 0; i < 5; ++i) {
+    // sizeof() применительно к переменной (либо типу) возвращает её размер в байтах
+    // применительно к массиву возвращает, соответственно, общий размер массива
+    for (int i = 0; i < sizeof(uninitializedArray) / sizeof(int); ++i) {
         printf_s("%d ", uninitializedArray[i]);
     }
     printf_s("\n\n");
