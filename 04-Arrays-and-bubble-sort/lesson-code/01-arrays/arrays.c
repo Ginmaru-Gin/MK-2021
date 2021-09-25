@@ -40,6 +40,17 @@ int main(void) {
     }
     printf_s("\n\n");
 
+    // заполнение массива с клавиатуры
+    printf_s("Enter a %d numbers: ", sizeof(uninitializedArray) / sizeof(int));
+    for (int i = 0; i < sizeof(uninitializedArray) / sizeof(int); ++i) {
+	scanf_s("%d", &uninitializedArray[i]);
+    }
+    printf_s("Now uninitializedArray:\n");
+    for (int i = 0; i < sizeof(uninitializedArray) / sizeof(int); ++i) {
+        printf_s("%d ", uninitializedArray[i]);
+    }
+    printf_s("\n\n");
+
     // если в инициализирующем выражении значений меньше, чем размер массива,
     // то оставшимся элементам будет присвоено значение 0
     int partlyInitializedArray[10] = { 8, 4, 9, 11 };
@@ -56,6 +67,7 @@ int main(void) {
         printf_s("%d ", zeroArray[i]);
     }
     printf_s("\n\n");
+
 
     system("pause");
     return 0;
