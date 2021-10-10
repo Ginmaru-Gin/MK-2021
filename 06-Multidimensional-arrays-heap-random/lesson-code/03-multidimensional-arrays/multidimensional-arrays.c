@@ -23,13 +23,27 @@ int main(void) {
 
     // инициализация двумерного массива:
     int primeNumbers[3][3] = { {2, 3, 5}, {7, 11, 13}, {17, 19, 23} };
-    printf_s("initialized array primeNumbers:\n");
+    printf_s("primeNumbers array:\n");
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             printf_s("%d\t", primeNumbers[i][j]);
         }
         printf_s("\n");
     }
+
+    printf_s("primeNumbers array by through indexing:\n");
+    int index = 0;
+    do {
+        // т.к. primeNumbers двумерный массив -- разыменовывать его для получения
+        // значений нужно дважды, разыменовав его единожды в силу его непрерывного
+        // расположения в памяти мы можем интерпретировать его как одномерный массив 
+        // и, таким образом, индексироваться по нему "насквозь" без вложенного цикла
+        printf_s("%d\t", (*primeNumbers)[index]);
+        ++index;
+        if ((index % 3) == 0) {
+            printf_s("\n");
+        }
+    } while (index < 3 * 3);
 
     system("pause");
     return 0;
