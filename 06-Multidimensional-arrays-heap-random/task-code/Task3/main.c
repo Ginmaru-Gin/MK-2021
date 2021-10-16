@@ -47,8 +47,8 @@ void PrintMultTable(int arr[])
 }
 int main()
 {
-    //InitArray 
     int A[N][M];
+    //Initialization array 
     for (int i = 0; i < M * N; i++)
         (*A)[i] = 1;
 
