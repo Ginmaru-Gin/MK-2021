@@ -1,22 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-int main()
-{
 #define N 5
 #define M 6
-    int A[N][M];
-    for (int i = 0; i < M * N; i++)
-        (*A)[i] = 1;
-
-    //int CountMultN = 0;
-    //int CountMultM = 0;
-    int index = M+1;
-    int indexY = 1;
+void SetValuesForMultTable(int arr[])
+{
+    //printf("%d", arr[5]);
     for (int i = 0; i < M; i++)
-        (*A)[i] = i+1;
+        arr[i] = i + 1;
+        //(*arr)[i] = i + 1;
     for (int i = 0; i < N; i++)
-        (*A)[M * i] = i + 1;
+        arr[i*M] = i + 1;
+        //(*arr)[M * i] = i + 1;
+
+}
+void CreateMultTable(int arr[])
+{
+    int index = M + 1;
+    int indexY = 1;
+
     do
     {
         if (index % 6 == 0)
@@ -26,10 +27,13 @@ int main()
         }
         else
         {
-            (*A)[index] = A[0][index % M] * A[indexY][0];
+            arr[index] = arr[index % M] * arr[indexY];
             index++;
         }
     } while (index < M * N);
+}
+void PrintMultTable(int arr[])
+{
     int i = 0;
     do
     {
@@ -37,7 +41,20 @@ int main()
         {
             printf("\n");
         }
-        printf("%d ", (*A)[i]);
+        printf("%0*d", -3, arr[i]);
         i++;
     } while (i < M * N);
+}
+int main()
+{
+    //InitArray 
+    int A[N][M];
+    for (int i = 0; i < M * N; i++)
+        (*A)[i] = 1;
+
+    SetValuesForMultTable(&A);
+    CreateMultTable(A);
+    PrintMultTable(A);
+
+    return 0;
 }

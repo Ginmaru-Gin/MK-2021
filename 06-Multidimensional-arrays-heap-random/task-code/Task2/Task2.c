@@ -28,7 +28,7 @@ int main()
         else
             sign = 1;
 
-        A_arr[i] = sign * (rand() % 21) +10;
+        A_arr[i] = sign * (rand() % 21) + 10;
     }
     for (int i = 0;i < a;i++)
         printf("%d ", A_arr[i]);
