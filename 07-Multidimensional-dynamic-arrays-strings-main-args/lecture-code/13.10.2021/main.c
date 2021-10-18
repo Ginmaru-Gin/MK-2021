@@ -112,13 +112,13 @@ void file_io_example()
 {
 	FILE* in;
 	char** strings = NULL;
-	int strings_count = 0; // we must calculate it
+	int strings_count = 1; // we must calculate it
 	if (fopen_s(&in, "C:\\_main\\_univer\\Projects\\TESTS\\lecture-code\\input.txt", "r") == 0)
 	{
 		fseek(in, 0, SEEK_END);
 		long int bytes_in_file = ftell(in);
 		fseek(in, 0, SEEK_SET);
-		char* buffer = (char*)malloc(bytes_in_file);
+		char* buffer = (char*)malloc(bytes_in_file + 1);
 		char current_symbol;
 		while (fscanf_s(in, "%c", &current_symbol, 1) != EOF)
 		{
@@ -131,7 +131,7 @@ void file_io_example()
 		{
 			for (int i = 0; i < strings_count; ++i)
 			{
-				fgets(buffer, bytes_in_file, in);
+				fgets(buffer, bytes_in_file + 1, in);
 				int length = my_strange_strlen(buffer) + 1;
 				strings[i] = (char*)malloc(length * sizeof(char));
 				for (int j = 0; j < length - 1; ++j)
