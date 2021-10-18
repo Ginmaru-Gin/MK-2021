@@ -49,9 +49,9 @@ $ ./task-2.exe 4 7
 > 1234567
 4 string were entered:
 rts (len = 3)
-gnirtS (len = 3)
-sgnirtS (len = 3)
-7654321 (len = 3)
+gnirtS (len = 6)
+sgnirtS (len = 7)
+7654321 (len = 7)
 ```
 
 ## #3 (0.3)
@@ -68,9 +68,9 @@ sgnirtS (len = 3)
 
 ```
 0 0
-1 2
+1 3
 9 -3
--2 -4
+-3 -6
 ```
 
 #### Консоль
