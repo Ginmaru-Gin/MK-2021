@@ -23,13 +23,12 @@ void CreateMultTable(int arr[])
         if (index % 6 == 0)
         {
             indexY++;
-            index += 1;
         }
         else
         {
             arr[index] = arr[index % M] * arr[indexY];
-            index++;
         }
+        index++;
     } while (index < M * N);
 }
 void PrintMultTable(int arr[])
