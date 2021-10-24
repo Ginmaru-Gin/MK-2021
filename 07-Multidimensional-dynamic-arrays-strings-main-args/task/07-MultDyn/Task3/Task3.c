@@ -45,44 +45,36 @@ int OpenFile(char** argv, int NumberArg)
 	//perror("This: ");
 	return 0;
 }
-int CreateArrayOfPoints(int** ArrayOfPoints)
+int* CreateArrayOfPoints()
 {
-	*ArrayOfPoints = (int*)calloc(1, sizeof(int));
-	if (*ArrayOfPoints == NULL)
-		return NULL;
-	return 1;
+	int* ArrayOfPoints = NULL;
+	ArrayOfPoints = (int*)calloc(1, sizeof(int));
+	if (ArrayOfPoints == NULL)
+		return -1;
+	return ArrayOfPoints;
 }
-int UpdateSizeArrayOfPoints(int** Array, int Size)
+int* UpdateSizeArrayOfPoints(int* Array, int Size)
 {
 	int* OldBuffer;
-	OldBuffer = *Array;
-	int size = _msize(*Array);
-	if ((*Array = (int*)realloc(OldBuffer, size + sizeof(int))) == NULL)
+	OldBuffer = Array;
+	int temp = Size + 1;
+	if ((Array = realloc(Array, temp * sizeof(int))) == NULL)
 	{
 		free(OldBuffer);
 		return NULL;
 	}
-	if (*Array == NULL)
+	if (Array == NULL)
 		return NULL;
-	return 1;
+	return Array;
 }
-int ReadFile(int** ArrayOfPoints, int* IndexArrayOfPoints)
+int* ReadFileInArray(int* ArrayOfPoints,int* SizeArrOfPoints)
 {
-	while (fscanf_s(input, "%d", ArrayOfPoints[*IndexArrayOfPoints]) != EOF)
+	while (fscanf_s(input, "%d", &ArrayOfPoints[*SizeArrOfPoints]) != EOF)
 	{
-		IndexArrayOfPoints++;
-		if (UpdateSizeArrayOfPoints(ArrayOfPoints, *IndexArrayOfPoints) == NULL)
+		*SizeArrOfPoints = *SizeArrOfPoints + 1;
+		if ((ArrayOfPoints = UpdateSizeArrayOfPoints(ArrayOfPoints, *SizeArrOfPoints)) == NULL)
 			return -1;
 	}
-}
-int* ReadFileInArray(int* SizeArrOfPoints)
-{
-	int* ArrayOfPoints;
-	if(CreateArrayOfPoints(&ArrayOfPoints) == NULL)
-		return -1;
-
-	ReadFile(&ArrayOfPoints, &SizeArrOfPoints);
-	//*SizeArrOfPoints = IndexArrayOfPoints;
 	return ArrayOfPoints;
 }
 void PrintCorrespondToRatio(int x, int y, int IsCorrespondToRatio)
@@ -126,15 +118,19 @@ int main(int argc, char** argv)
 	int* ArrayOfPoints = NULL;
 	int NumberArg = argc - 1;
 	int SizeArrayOfPoints = 0;
-	ArrayOfRatio = CreateAndEnterArrayOfRatio((NumberArg-1), argv);
-	if (ArrayOfRatio == NULL)
+
+	if ((ArrayOfRatio = CreateAndEnterArrayOfRatio((NumberArg-1), argv)) == -1)
 		return -1;
-	if(OpenFile(argv, NumberArg) == -1)
+	if ((ArrayOfPoints = CreateArrayOfPoints()) == -1)
 		return -1;
-	if((ArrayOfPoints = ReadFileInArray(&SizeArrayOfPoints)) == -1)
+
+	if (OpenFile(argv, NumberArg) == -1)
+		return -1;
+	if ((ArrayOfPoints = ReadFileInArray(ArrayOfPoints,&SizeArrayOfPoints)) == -1)
 		return -1;
 
 	CheckPointsCorrespondToRatioOfStraightLine(ArrayOfPoints, ArrayOfRatio, SizeArrayOfPoints, NumberArg);
+
 	free(ArrayOfPoints);
 	free(ArrayOfRatio);
 	if (input != NULL)
