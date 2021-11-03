@@ -128,7 +128,6 @@ char getDigit(char ch) {
     return 0;
 }
 
-        // прибавим единицу
 void fprintfMyExitError(FILE* file, errno_t error) {
     // коды ошибок отрицательные, поэтому взятые со знаком минус
     // они дадут индексы соответствующих ошибок в массиве
