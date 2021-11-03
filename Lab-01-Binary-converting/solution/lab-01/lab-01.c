@@ -29,6 +29,7 @@ A % B == -(-A % B)
 #define ERR_ALLOC_MEM       -3
 #define INTERNAL_ERROR      -4
 #define TOO_LONG_STRING_IN_FILE -5
+#define EMPTY_INPUT_FILE    -6
 // ERRORS MESSAGES:
 #define SUCCESS_MSG                     ""
 #define WRONG_INPUT_DATA_MSG            "ERROR: wrong input data\n"
@@ -36,6 +37,7 @@ A % B == -(-A % B)
 #define ERR_ALLOC_MEM_MSG               "ERROR: an error has occured on memory allocating\n"
 #define INTERNAL_ERROR_MSG              "ERROR: an internal error has occured\n"
 #define TOO_LONG_STRING_IN_FILE_MSG     "ERROR: too long string in file\n"
+#define EMPTY_INPUT_FILE_MSG            "ERROR: the input file is empty\n"
 // создадим массив для сообщений об ошибках, чтобы можно было обращаться
 // к ним по кодам ошибок (станет понятнее при просмотре функции fprintfMyExitError)
 char* ERROR_MSGS[] = {
@@ -44,7 +46,8 @@ char* ERROR_MSGS[] = {
     INT_TYPE_OVERFLOW_MSG,
     ERR_ALLOC_MEM_MSG,
     INTERNAL_ERROR_MSG,
-    TOO_LONG_STRING_IN_FILE_MSG
+    TOO_LONG_STRING_IN_FILE_MSG,
+    EMPTY_INPUT_FILE_MSG
 };
 
 // некоторые константы, которыми будем пользоваться в ходе работы
@@ -62,6 +65,8 @@ typedef char byte;
 // вспомогательная функция
 // возвращает длину десятичной записи числа INT_MAX
 unsigned intMaxLength(void);
+int isDigit(int ch);
+int isSpace(int ch);
 
 // ФУНКЦИИ ВЫВОДА
 // вывод информации о своих ошибках и завершение работы
@@ -95,10 +100,17 @@ int main(void) {
     if (fopen_s(&file, fileNameBuf, "r")) {
         exit(exitErrMsg("ERROR: couldn't open the input file"));
     }
+    char tmp;
+    while (isSpace(tmp = fgetc(file)));
+    if (tmp == EOF) {
+        fprintfMyExitError(stderr, EMPTY_INPUT_FILE);
+        exit(EMPTY_INPUT_FILE);
+    }
+    ungetc(tmp, file);
     // читаем число из файла:
     int number;
     if ((error = readNumberFromFile(file, &number))) {
-        fprintfMyExitError(file, error);
+        fprintfMyExitError(stderr, error);
         exit(error);
     }
     fclose(file);
@@ -124,7 +136,7 @@ int main(void) {
 }
 
 char getDigit(char ch) {
-    if (isdigit(ch)) return ch - '0';
+    if (isDigit(ch)) return ch - '0';
     return 0;
 }
 
@@ -162,7 +174,7 @@ errno_t readNumberFromFile(FILE* file, int* number) {
     char* ptr = string;
     if (*ptr == '-' || *ptr == '+') ++ptr;
     while (*ptr != '\0') {
-        if (!isdigit(*(ptr++))) {
+        if (!isDigit(*(ptr++))) {
             free(string);
             return WRONG_INPUT_DATA;
         }
@@ -263,4 +275,12 @@ unsigned intMaxLength(void) {
     int intMax = INT_MAX;
     while (intMax /= 10) ++length;
     return length;
+}
+
+int isDigit(int ch) {
+    return isdigit((char)ch);
+}
+
+int isSpace(int ch) {
+    return isspace((char)ch);
 }
