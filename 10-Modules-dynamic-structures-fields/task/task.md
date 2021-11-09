@@ -40,7 +40,7 @@ contains
 some strings
 ```
 
-## 3 (0.3)
+## #3 (0.3)
 
 **[ isspace(), isupper(), islower() ]**
 
