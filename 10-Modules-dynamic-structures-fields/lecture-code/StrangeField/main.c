@@ -4,8 +4,9 @@
 
 int main()
 {
-	struct fields_sequence* fs = generate_fields_sequence(10, 5, 10, 2, 2); // 10 fields, 5x10 size, 2,2 == position of ball
+	// strange program for ball movement on fields sequence
+	struct fields_sequence* fs = generate_fields_sequence(100, 20, 80, 10, 40);
 	fields_sequence_visualize(fs);
-
+	free_fields_sequence(fs);
 	return 0;
 }
