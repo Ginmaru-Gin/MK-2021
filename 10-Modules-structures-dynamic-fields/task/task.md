@@ -1,4 +1,4 @@
-# Modules, dynamic structure's fields
+# Modules, structure's dynamic fields
 
 ## Замечание
 
