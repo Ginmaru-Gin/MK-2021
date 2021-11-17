@@ -60,7 +60,7 @@ void fourth_variant(int size)
 	int** mass = (int**)malloc(count);
 
 	for (int i = 0; i < size; i++)
-		mass[i] = mass + size + i * size;
+		mass[i] = (int*)(mass + size) + i * size; // mass[i] = mass+size+i*size WRONG!
 
 	mass[size - 1][size - 1] = 99;
 
