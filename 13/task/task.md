@@ -55,7 +55,7 @@ $ task-2.exe 205
 $ task-3.exe 12 107
 A: 39
 B: doesn't exist
-C: 3111111111
+C: 4260000000
 D: doesn't exist
 ```
 
