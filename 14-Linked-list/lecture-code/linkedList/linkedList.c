@@ -3,14 +3,18 @@
 
 #include "linkedList.h"
 
-list* createList()
+linkedList* createList()
 {
-	list* l = (list*)malloc(sizeof(list));
-	l->size = 0;
-	l->head = 0;
-	l->tail = 0;
+	linkedList* l = (linkedList*)malloc(sizeof(linkedList));
+	if (l)
+	{
+		l->size = 0;
+		l->head = 0;
+		l->tail = 0;
+	}
+	return l;
 }
-void destroyList(list* l)
+void destroyList(linkedList* l)
 {
 	node* current = l->head;
 	node* tmp;
@@ -22,22 +26,41 @@ void destroyList(list* l)
 	}
 	free(l);
 }
-void pushBack(list* l, int _value)
+void pushBack(linkedList* l, int newValue)
 {
 	node* newElem = (node*)malloc(sizeof(node));
-	newElem->value = _value;
-	newElem->next = 0;
+	if (newElem)
+	{
+		newElem->value = newValue;
+		newElem->next = 0;
 
-	if (l->tail != 0)
-		l->tail->next = newElem;
-	l->tail = newElem;
+		if (l->tail != 0)
+			l->tail->next = newElem;
+		l->tail = newElem;
 
-	if (l->head == 0)
+		if (l->head == 0)
+			l->head = newElem;
+
+		l->size++;
+	}
+}
+void pushFront(linkedList* l, int newValue)
+{
+	node* newElem = (node*)malloc(sizeof(node));
+	if (newElem)
+	{
+		newElem->value = newValue;
+		newElem->next = l->head;
+
+		if (l->head == 0)
+			l->tail = newElem;
+
 		l->head = newElem;
 
-	l->size++;
+		l->size++;
+	}
 }
-void printList(list* l)
+void printList(linkedList* l)
 {
 	printf_s("Linked_List : \n");
 	node* current = l->head;
@@ -48,11 +71,11 @@ void printList(list* l)
 	}
 	printf_s("\n");
 }
-void addRandom(list* l, size_t count)
+void addRandom(linkedList* l, size_t count)
 {
 	for (size_t i = 0; i < count; i++)
 	{
-		pushBack(l, rand() % 10);
+		pushBack(l, rand() % 20);
 	}
 }
 void printReverseNodes(node* n)
@@ -62,13 +85,13 @@ void printReverseNodes(node* n)
 	printReverseNodes(n->next);
 	printf_s("%d ", n->value);
 }
-void printReverseList(list* l)
+void printReverseList(linkedList* l)
 {
 	printf_s("printReverseList : \n");
 	printReverseNodes(l->head);
 	printf_s("\n");
 }
-void reverseList(list* l)
+void reverseList(linkedList* l)
 {
 	node* saveTail = l->tail;
 	l->tail = l->head;
@@ -82,7 +105,7 @@ void reverseList(list* l)
 		current = following;
 	}
 }
-int popBack(list* l)
+int popBack(linkedList* l)
 {
 	int result = 0;
 	if (l->tail != 0)
@@ -91,7 +114,7 @@ int popBack(list* l)
 		l->size--;
 	}
 	else
-		printf_s("Empty list popBack error.\n");
+		printf_s("Empty linkedList popBack error.\n");
 	node* current = l->head;
 	if (current != 0)
 	{
@@ -103,4 +126,45 @@ int popBack(list* l)
 	if (l->tail != 0)
 		l->tail->next = 0;
 	return result;
+}
+// not ideal realization, need error handling mechanism
+int popFront(linkedList* l)
+{
+	int value = 0;
+	if (l && l->head)
+	{
+		value = l->head->value;
+		node* tmp = l->head;
+		l->head = l->head->next;
+		free(tmp);
+		l->size--;
+	}
+	else
+		printf_s("warning : empty linkedList popFront.\n");
+	return value;
+}
+int front(linkedList* l)
+{
+	int value = 0;
+	if (l && l->head)
+		value = l->head->value;
+	else
+		printf_s("warning : empty linkedList front.\n");
+	return value;
+}
+int getMiddleElem(linkedList* l)
+{
+	node* slow = l->head;
+	node* fast = l->head;
+	node* predSlow = l->head;
+	while (fast != 0 && fast != l->tail)
+	{
+		predSlow = slow;
+		fast = fast->next->next;
+		slow = slow->next;
+	}
+	if (fast == l->tail)
+		return slow->value;
+	else
+		return predSlow->value;
 }
