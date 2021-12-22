@@ -4,10 +4,8 @@
 
 #include "linkedList.h"
 
-int main()
+void test1()
 {
-	srand((unsigned int)time(0));
-
 	linkedList* l1 = createList();
 	popBack(l1);
 	addRandom(l1, 10);
@@ -29,6 +27,27 @@ int main()
 	printList(l1);
 	printf_s("Middle value = %d\n", getMiddleElem(l1));
 	destroyList(l1);
+}
 
+void test2()
+{
+	linkedList* l1 = createList();
+	addRandom(l1, 20);
+	printList(l1);
+	removeAllValues(l1, 0);
+	printf_s("after remove all 0 : \n");
+	printList(l1);
+	removeAllValues(l1, 1);
+	printf_s("after remove all 1 : \n");
+	printList(l1);
+	printReverseList(l1);
+	destroyList(l1);
+}
+
+int main()
+{
+	srand((unsigned int)time(0));
+	//test1();
+	test2();
 	return 0;
 }

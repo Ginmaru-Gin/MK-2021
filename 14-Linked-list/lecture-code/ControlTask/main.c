@@ -52,9 +52,9 @@ void dealloc(int** mass, size_t size)
 int main()
 {
 	size_t value = 127;
-	printf("f(%lu,10) -> %lu\n", value, unknownFunction(value, 10));
-	printf("f(%lu,8) -> %lu\n", value, unknownFunction(value, 8));
-	printf("f(%lu,2) -> %lu\n\n", value, unknownFunction(value, 2));
+	printf_s("f(%lu,10) -> %lu\n", value, unknownFunction(value, 10));
+	printf_s("f(%lu,8) -> %lu\n", value, unknownFunction(value, 8));
+	printf_s("f(%lu,2) -> %lu\n\n", value, unknownFunction(value, 2));
 
 	const size_t size = 3;
 	int** mass, ** mass2;

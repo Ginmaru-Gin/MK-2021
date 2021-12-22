@@ -20,12 +20,14 @@ struct LinkedList
 typedef struct LinkedList linkedList;
 
 linkedList* createList();
+linkedList* copyList(linkedList* src);
 void pushBack(linkedList*, int);
 void pushFront(linkedList*, int);
 void addRandom(linkedList*, size_t);
 int popBack(linkedList*);
 int popFront(linkedList*);
 int front(linkedList*);
+void removeAllValues(linkedList*, int);
 void printList(linkedList*);
 void reverseList(linkedList*);
 void printReverseList(linkedList*);
@@ -34,6 +36,5 @@ void destroyList(linkedList*);
 
 // need to implement
 // void insert(linkedList* l, int newValue);
-// void remove(linkedList* l, int removedValue);
 // void removeAll(linkedList* l, int removedValue);
 // node* find(linkedList* l, int findValue);

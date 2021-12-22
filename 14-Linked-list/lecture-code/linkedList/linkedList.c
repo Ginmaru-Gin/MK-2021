@@ -12,6 +12,24 @@ linkedList* createList()
 		l->head = 0;
 		l->tail = 0;
 	}
+	else
+		printf_s("error : can't allocate memory in createList.\n");
+	return l;
+}
+linkedList* copyList(linkedList* src)
+{
+	linkedList* l = createList();
+	if (l)
+	{
+		node* current = src->head;
+		while (current != 0)
+		{
+			pushBack(l, current->value);
+			current = current->next;
+		}
+	}
+	else
+		printf_s("error : can't allocate memory in copyList.\n");
 	return l;
 }
 void destroyList(linkedList* l)
@@ -60,9 +78,26 @@ void pushFront(linkedList* l, int newValue)
 		l->size++;
 	}
 }
+// https://titanwolf.org/Network/Articles/Article?AID=76013240-79e8-4cb5-8f83-f49e97e4b646
+void removeAllValues(linkedList* l, int removedValue)
+{
+	node** current = &(l->head);
+	while (*current != 0)
+	{
+		node* entry = *current;
+		if (entry->value == removedValue)
+		{
+			*current = entry->next;
+			l->size--;
+			free(entry);
+		}
+		else
+			current = &(entry->next);
+	}
+}
 void printList(linkedList* l)
 {
-	printf_s("Linked_List : \n");
+	//printf_s("Linked_List : \n");
 	node* current = l->head;
 	while (current != 0)
 	{
@@ -75,7 +110,7 @@ void addRandom(linkedList* l, size_t count)
 {
 	for (size_t i = 0; i < count; i++)
 	{
-		pushBack(l, rand() % 20);
+		pushBack(l, rand() % 5);
 	}
 }
 void printReverseNodes(node* n)

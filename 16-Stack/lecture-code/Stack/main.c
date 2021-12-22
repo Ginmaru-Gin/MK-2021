@@ -41,30 +41,9 @@ void test2()
 	destroyStack(s);
 }
 
-size_t fastPower(size_t base, size_t pow)
-{
-	size_t result = 1;
-	while (pow)
-	{
-		if ((pow % 2) == 0)
-		{
-			base *= base;
-			pow /= 2;
-		}
-		else
-		{
-			result *= base;
-			--pow;
-		}
-	}
-	return result;
-}
-
 int main()
 {
 	test1();
 	test2();
-	size_t base = 6, pow = 11;
-	printf_s("%lu ^ %lu = %lu\n", base, pow, fastPower(base, pow));
 	return 0;
 }
