@@ -32,6 +32,7 @@ void printList(linkedList*);
 void reverseList(linkedList*);
 void printReverseList(linkedList*);
 int getMiddleElem(linkedList*);
+const size_t getSize(linkedList*);
 void destroyList(linkedList*);
 
 // need to implement

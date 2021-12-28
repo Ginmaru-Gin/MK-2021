@@ -6,7 +6,8 @@
 stack* createStack()
 {
 	stack* s = (stack*)malloc(sizeof(stack));
-	s->l = createList();
+	if (s)
+		s->l = createList();
 	return s;
 }
 void destroyStack(stack* s)
@@ -29,7 +30,7 @@ int top(stack* s)
 int empty(stack* s)
 {
 	int isEmpty = 0;
-	if (s->l->size == 0)
+	if (getSize(s->l) == 0)
 		isEmpty = 1;
 	return isEmpty;
 }

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "linkedList.h"
+#include "..\..\..\16-Stack\lecture-code\Stack\stack.h"
 
 linkedList* createList()
 {
@@ -70,7 +71,7 @@ void pushFront(linkedList* l, int newValue)
 		newElem->value = newValue;
 		newElem->next = l->head;
 
-		if (l->head == 0)
+		if (l->tail == 0)
 			l->tail = newElem;
 
 		l->head = newElem;
@@ -97,7 +98,7 @@ void removeAllValues(linkedList* l, int removedValue)
 }
 void printList(linkedList* l)
 {
-	//printf_s("Linked_List : \n");
+	printf_s("linked_List : \n");
 	node* current = l->head;
 	while (current != 0)
 	{
@@ -110,7 +111,7 @@ void addRandom(linkedList* l, size_t count)
 {
 	for (size_t i = 0; i < count; i++)
 	{
-		pushBack(l, rand() % 5);
+		pushBack(l, rand() % 100);
 	}
 }
 void printReverseNodes(node* n)
@@ -149,7 +150,7 @@ int popBack(linkedList* l)
 		l->size--;
 	}
 	else
-		printf_s("Empty linkedList popBack error.\n");
+		printf_s("warning : empty linkedList popBack.\n");
 	node* current = l->head;
 	if (current != 0)
 	{
@@ -202,4 +203,8 @@ int getMiddleElem(linkedList* l)
 		return slow->value;
 	else
 		return predSlow->value;
+}
+const size_t getSize(linkedList* l)
+{
+	return l->size;
 }
