@@ -44,10 +44,23 @@ void test2()
 	destroyList(l1);
 }
 
+void palindromeCheck()
+{
+	linkedList* l1 = createList();
+	addRandom(l1, 4);
+	printList(l1);
+	if (isPalindrome(l1))
+		printf_s("palindrome\n");
+	else
+		printf_s("not palindrome");
+	destroyList(l1);
+}
+
 int main()
 {
 	srand((unsigned int)time(0));
 	//test1();
-	test2();
+	//test2();
+	palindromeCheck();
 	return 0;
 }

@@ -98,7 +98,7 @@ void removeAllValues(linkedList* l, int removedValue)
 }
 void printList(linkedList* l)
 {
-	printf_s("linked_List : \n");
+	printf_s("linkedList : \n");
 	node* current = l->head;
 	while (current != 0)
 	{
@@ -111,7 +111,7 @@ void addRandom(linkedList* l, size_t count)
 {
 	for (size_t i = 0; i < count; i++)
 	{
-		pushBack(l, rand() % 100);
+		pushBack(l, rand() % count);
 	}
 }
 void printReverseNodes(node* n)
@@ -207,4 +207,21 @@ int getMiddleElem(linkedList* l)
 const size_t getSize(linkedList* l)
 {
 	return l->size;
+}
+int recursivePalindromeCheck(node** left, node* right)
+{
+	if (right == 0)
+		return 1;
+	int recursiveResult = recursivePalindromeCheck(left, right->next);
+	if ((*left)->value == right->value)
+	{
+		*left = (*left)->next;
+		return recursiveResult && 1;
+	}
+	else
+		return recursiveResult && 0;
+}
+int isPalindrome(linkedList* l)
+{
+	return recursivePalindromeCheck(&(l->head), l->head);
 }

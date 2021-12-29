@@ -34,8 +34,4 @@ void printReverseList(linkedList*);
 int getMiddleElem(linkedList*);
 const size_t getSize(linkedList*);
 void destroyList(linkedList*);
-
-// need to implement
-// void insert(linkedList* l, int newValue);
-// void removeAll(linkedList* l, int removedValue);
-// node* find(linkedList* l, int findValue);
+int isPalindrome(linkedList*);
